@@ -1,6 +1,6 @@
-import './Test.css'
+import './Search.css'
 
-const Test = (props) => {
+const Search = (props) => {
     return (
         <div className="submit">
             <div className="form-group">
@@ -11,11 +11,18 @@ const Test = (props) => {
             </div>
             <div className="data-name">
             {props.name && (
-                <p className="data-text">If your name is {props.name}, I think your nationality is {props.nationality}, your ages {props.ages}, and your gender {props.gender}.</p>
+                <p className="data-text">
+                    If your name is {props.name}, 
+                    I think your nationality is 
+                    { props.nationality.map(nationality =>  ` ${nationality.country_id}(with a probability of ${nationality.probability}),` )} 
+                    your age is {props.age}, 
+                    and your gender {props.gender}
+                    (with a probability of {props.genderprob}).
+                </p>
             )}
             </div>  
         </div>
     )
 };
 
-export default Test;
+export default Search;

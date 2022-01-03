@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import Header from './Header';
-import Test from './Test';
+import Search from './Search';
 import Foot from './Foot';
-// import axios from 'axios'
 
 import OperationsService from './api/Api';
 
@@ -16,45 +15,12 @@ function App() {
   const [age, setAge] = useState([])
   const [input, setInput] = useState();
 
-  // 44444444444444444444444444
-  
-  
-  // const onClick = () => {
-  //   const requestOne = axios.get(`https://gender-api.com/get?name=${input}`);
-  //   const requestTwo = axios.get(`https://gender-api.com/get?name=${input}`);
-  //   const requestThree = axios.get(`https://gender-api.com/get?name=${input}`);  
-
-  //   axios
-  //     .all([requestOne, requestTwo, requestThree])
-  //     .then(
-  //       axios.spread((...responses) => {
-  //         const responseOne = setNationality(responses[0]);
-  //         const responseTwo = setGender(responses[1]);
-  //         const responesThree = setAge(responses[2]); 
-
-  //         // use/access the results
-  //         console.log(nationality, responseTwo, responesThree);
-  //       })
-  //     )
-  //     .catch(errors => {
-  //       // react on errors.
-  //       console.error(errors);
-  //     });
-  // }
-
-  // 44444444444444444444444444
-
-
   const getOperations = () => {
-    let operationsService = new OperationsService();
+    const operationsService = new OperationsService();
 
     const datanationality = operationsService.getNationality(input);
     const datagender = operationsService.getGender(input);
     const dataage = operationsService.getAge(input);
-
-    console.log(datanationality)
-    console.log(datagender)
-    console.log(dataage)
 
     datanationality.then(res => setNationality(res))
     datagender.then(res => setGender(res))
@@ -64,19 +30,20 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header /> {/*Añado Bootstrap al head*/}
 
-      < Test 
-      button = {getOperations}
-      input = {input}
-      setinput = {e => setInput(e.target.value)}
-      name = {nationality.name}
-      nationality = {nationality.name}
-      ages = {nationality.errno}
-      gender = {nationality.gender}
+      < Search 
+        button = {getOperations}
+        input = {input}
+        setinput = {e => setInput(e.target.value)}
+        name = {nationality.name}
+        nationality = { nationality.country}
+        age = {age.age}
+        gender = {gender.gender}
+        genderprob = {gender.probability}
       />
 
-      <Foot />
+      <Foot /> {/*Bootstrap script y firma.*/}
     </div>
   );
 }
